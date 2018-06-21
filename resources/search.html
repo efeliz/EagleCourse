@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" >
+    <link rel="icon" type="image/x-icon" href="eagle-wing.png">
+    <title>Eagle Vision - Search</title>
+
+</head>
+<body>
+
+    <!-- Bootstrap JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- To fully utilize jQuery, I switched the default silm build to the normal one -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.min.js"></script>
+    <script type="text/javascript" src="js/eagleHelper.js"></script>
+    <script type="text/javascript" src="js/eagle.js"></script>
+
+
+
+    <!-- fixed top navbar -->
+    <nav class="navbar fixed-top bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://192.168.1.6:8080"><img alt="Brand" src="eagle-wing.png" height="42" width="42">Eagle Vision</a>
+            </div>
+
+            <div class="navbar-text navbar-right">
+                <a href="http://192.168.1.6:8080/scheduler" target="_blank" class="navbar-link">Scheduler</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <form action="search.html" method="GET">
+
+            <!-- School select-->
+            <div class="form-group">
+                <label for="selectSchool">School select</label>
+                <select class="form-control" name="selectSchool" id="selectSchool"></select>
+            </div>
+
+            <!-- Subject select-->
+            <label for="selectSchool">Subject select / input</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <!-- Dropdown button for the collapsed card-->
+                    <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">>Options</button>
+                    <!-- Clear button for the equivalent text input-->
+                    <button class="btn btn-outline-secondary" type="button" id="subjectClear">Clear Subjects</button>
+                </div>
+
+                <input type="text" class="form-control" id="subjectInput" name="selectSubject" placeholder="e.g. CSCI, MATH" aria-label="" aria-describedby="basic-addon1">
+                <div class="collapse col-sm-12 col-md-12 col-lg-12" id="collapseExample">
+                    <div class="card card-body"></div>
+                </div>
+            </div>
+
+
+            <label for="selectSchool">Optional course name/code select</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="nameCodeCheckbox" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+                <input type="text" id="nameCodeInput" placeholder="e.g. Logic and Computation OR CSCI100704" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+
+            <label for="selectSchool">Optional instructor select</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="instructorCheckbox" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+                <input type="text" id="instructorInput" placeholder="e.g. Signorile" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+
+            <label for="selectSchool">Optional open/ closed status select</label>
+            <div class="input-group mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input2" type="radio" name="inlineRadioOptions2" id="inlineRadio1" value="Both" checked>
+                    <label class="form-check-label" for="inlineRadio1">Both</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input2" type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="Open">
+                    <label class="form-check-label" for="inlineRadio2">Open</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input2" type="radio" name="inlineRadioOptions2" id="inlineRadio3" value="Closed">
+                    <label class="form-check-label" for="inlineRadio3">Closed</label>
+                </div>
+            </div>
+
+
+            <label for="selectSchool">Optional meetdays select: </label>
+            <div class="input-group mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input3" type="radio" name="inlineRadioOptions3" id="inlineRadio4" value="all" checked>
+                    <label class="form-check-label" for="inlineRadio4">all</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input3" type="radio" name="inlineRadioOptions3" id="inlineRadio5" value="contains">
+                    <label class="form-check-label" for="inlineRadio5">contains</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input3" type="radio" name="inlineRadioOptions3" id="inlineRadio6" value="except">
+                    <label class="form-check-label" for="inlineRadio6">except</label>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input4" type="checkbox" id="inlineCheckbox1" value="1" checked>
+                    <label class="form-check-label" for="inlineCheckbox1">Monday</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input4" type="checkbox" id="inlineCheckbox2" value="2" checked>
+                    <label class="form-check-label" for="inlineCheckbox2">Tuesday</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input4" type="checkbox" id="inlineCheckbox3" value="3" checked>
+                    <label class="form-check-label" for="inlineCheckbox3">Wednesday</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input4" type="checkbox" id="inlineCheckbox4" value="4" checked>
+                    <label class="form-check-label" for="inlineCheckbox4">Thursday</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input4" type="checkbox" id="inlineCheckbox5" value="5" checked>
+                    <label class="form-check-label" for="inlineCheckbox5">Friday</label>
+                </div>
+            </div>
+
+
+            <!-- Class starts after select-->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Class starts after</label>
+                <output name="customRange1Output" id="customRange1Output">12:00pm</output>
+            </div>
+            <input type="range" class="custom-range" min="0" max="1440" value="720" step="1" id="customRange1" oninput="customRange1Output.value = parseTimeString(customRange1.value)">
+
+
+            <!-- Class ends before select-->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">Class ends before</label>
+                <output name="customRange2Output" id="customRange2Output">12:00pm</output>
+            </div>
+            <input type="range" class="custom-range" min="0" max="1440" value="720" step="1" id="customRange2" oninput="customRange2Output.value = parseTimeString(customRange2.value)">
+
+
+            <!-- Clear options below subject input, highlight function, and search button-->
+            <div class="input-group">
+                <div class="input-group-append">
+                    <button type="button" id="allClear" class="btn btn-outline-secondary">Clear Options</button>
+                </div>
+                <input type="text" name = "query" id="queryInput" placeholder="Highlight & Contains only"class="form-control" aria-label="Custmized search query input">
+                <div class="input-group-append">
+                    <button type="submit" id="searchSubmit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="resultPage">
+            <div class="dataWarehouse"></div>
+            <div class="allContent"></div>
+        </div>
+    </div>
+
+    <script>
+
+        $(function(){
+            renderSearchPage();
+            subjectClearHandler();
+            optionsClearHandler();
+            selectSchoolChangeHandler();
+            searchSubmitHandler();
+        });
+
+    </script>
+
+</body>
+</html>
